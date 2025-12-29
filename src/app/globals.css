@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-wave-deep-blue: #0A2463;
+  --color-wave-cyan: #3BCEAC;
+  --color-wave-bright-blue: #5E9EFF;
+  --color-wave-white: #F8FBFF;
+  --color-wave-navy: #001233;
+  
+  --animate-wave: wave 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+:root {
+  --wave-deep-blue: #0A2463;
+  --wave-cyan: #3BCEAC;
+  --wave-bright-blue: #5E9EFF;
+  --wave-white: #F8FBFF;
+  --wave-navy: #001233;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--wave-white);
+  color: var(--wave-navy);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.wave-gradient {
+  background: linear-gradient(135deg, var(--wave-deep-blue) 0%, var(--wave-bright-blue) 100%);
+}
+
+.wave-text-gradient {
+  background: linear-gradient(135deg, var(--wave-cyan) 0%, var(--wave-bright-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
