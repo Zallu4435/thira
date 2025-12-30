@@ -36,7 +36,7 @@ export default function CTASection() {
               </ButtonLink>
 
               <ButtonLink
-                href="tel:+919876543210"
+                href="tel:+919567464435"
                 variant="outline"
                 size="lg"
                 className="bg-white border-wave-cyan/20 hover:border-wave-cyan"

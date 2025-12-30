@@ -2,55 +2,53 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { siteConfig } from "@/lib/constants/siteConfig";
 import WaveBackground from "@/components/animations/WaveBackground";
 import { Badge, ButtonLink } from "@/components/common";
 
 export default function Hero() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate title words
-      if (titleRef.current) {
-        gsap.from(titleRef.current.children, {
-          y: 100,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.1,
-          ease: "power4.out",
-        });
+  const containerRef = useRef<HTMLDivElement>(null);
+  useGSAP(() => {
+    // Animate title words
+    gsap.fromTo(".hero-title-line",
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.1,
+        ease: "power4.out",
       }
+    );
 
-      // Animate subtitle
-      if (subtitleRef.current) {
-        gsap.from(subtitleRef.current, {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          delay: 0.5,
-          ease: "power3.out",
-        });
+    // Animate subtitle
+    gsap.fromTo(".hero-subtitle",
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        delay: 0.5,
+        ease: "power3.out",
       }
+    );
 
-      // Animate CTA buttons
-      if (ctaRef.current) {
-        gsap.from(ctaRef.current.children, {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          delay: 0.8,
-          ease: "back.out(1.7)",
-        });
+    // Animate CTA buttons
+    gsap.fromTo(".hero-cta > *",
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        delay: 0.8,
+        ease: "back.out(1.7)",
       }
-    });
+    );
+  }, { scope: containerRef });
 
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-wave-white via-blue-50 to-cyan-50">
@@ -65,7 +63,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      <div ref={containerRef} className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="max-w-5xl mx-auto text-center">
           {/* Badge */}
           <div className="mb-8">
@@ -78,32 +76,26 @@ export default function Hero() {
           </div>
 
           {/* Main Title */}
-          <h1
-            ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-wave-navy mb-6 leading-tight"
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-wave-navy mb-6 leading-tight">
             <span className="block overflow-hidden">
-              <span className="inline-block">Ride</span>
+              <span className="inline-block hero-title-line">Ride</span>
             </span>
             <span className="block overflow-hidden">
-              <span className="inline-block">the</span>{" "}
-              <span className="inline-block wave-text-gradient">Wave</span>
+              <span className="inline-block hero-title-line">the</span>{" "}
+              <span className="inline-block wave-text-gradient hero-title-line">Wave</span>
             </span>
             <span className="block overflow-hidden">
-              <span className="inline-block">of Growth</span>
+              <span className="inline-block hero-title-line">of Growth</span>
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p
-            ref={subtitleRef}
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed hero-subtitle">
             Custom websites designed to elevate salons, restaurants, gyms, and local businesses across Kerala
           </p>
 
           {/* CTA Buttons */}
-          <div ref={ctaRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 hero-cta">
             <ButtonLink
               href="/contact"
               variant="primary"

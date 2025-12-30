@@ -39,89 +39,99 @@ export default function Header() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
-      )}
-    >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center space-x-2 group"
-          >
-            <div className="relative">
-              {/* Wave icon placeholder - replace with your logo */}
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-wave-cyan to-wave-bright-blue flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                <span className="text-white font-bold text-xl">T</span>
-              </div>
-            </div>
-            <span className="text-xl md:text-2xl font-bold wave-text-gradient">
-              {siteConfig.name}
-            </span>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-all duration-300 relative group",
-                    isActive
-                      ? "text-wave-cyan"
-                      : "text-wave-navy hover:text-wave-cyan"
-                  )}
-                >
-                  {item.name}
-                  {/* Active indicator */}
-                  <span
-                    className={cn(
-                      "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-wave-cyan transition-all duration-300",
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
-                    )}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* CTA Button - Desktop */}
-          <div className="hidden md:block">
-            <Link
-              href="/contact"
-              className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-wave-cyan to-wave-bright-blue text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              Get Started
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-wave-white/50 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-wave-navy" />
-            ) : (
-              <Menu className="w-6 h-6 text-wave-navy" />
-            )}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
+    <>
+      {/* Mobile Menu Backdrop */}
       <div
         className={cn(
-          "md:hidden fixed inset-0 top-16 bg-white transition-transform duration-300 ease-in-out",
+          "md:hidden fixed inset-0 bg-white z-[60] transition-opacity duration-300 ease-in-out",
+          isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      />
+
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-[70] transition-all duration-300 ease-in-out",
+          !isMobileMenuOpen && isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg"
+            : "bg-transparent"
+        )}
+      >
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <Link
+              href="/"
+              className="flex items-center space-x-2 group relative z-[70]"
+            >
+              <div className="relative">
+                {/* Wave icon placeholder - replace with your logo */}
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-wave-cyan to-wave-bright-blue flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                  <span className="text-white font-bold text-xl">T</span>
+                </div>
+              </div>
+              <span className="text-xl md:text-2xl font-bold wave-text-gradient">
+                {siteConfig.name}
+              </span>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-all duration-300 relative group",
+                      isActive
+                        ? "text-wave-cyan"
+                        : "text-wave-navy hover:text-wave-cyan"
+                    )}
+                  >
+                    {item.name}
+                    {/* Active indicator */}
+                    <span
+                      className={cn(
+                        "absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-wave-cyan transition-all duration-300",
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      )}
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* CTA Button - Desktop */}
+            <div className="hidden md:block">
+              <Link
+                href="/contact"
+                className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-wave-cyan to-wave-bright-blue text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300"
+              >
+                Get Started
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-wave-white/50 transition-colors z-[70]"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6 text-wave-navy" />
+              ) : (
+                <Menu className="w-6 h-6 text-wave-navy" />
+              )}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Menu Content */}
+      <div
+        className={cn(
+          "md:hidden fixed inset-0 z-[65] pt-20 bg-transparent transition-transform duration-300 ease-in-out",
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -143,7 +153,7 @@ export default function Header() {
               </Link>
             );
           })}
-          
+
           {/* Mobile CTA */}
           <Link
             href="/contact"
@@ -153,6 +163,6 @@ export default function Header() {
           </Link>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

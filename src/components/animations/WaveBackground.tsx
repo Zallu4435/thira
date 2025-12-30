@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 export default function WaveBackground() {
   const wave1Ref = useRef<SVGPathElement>(null);
   const wave2Ref = useRef<SVGPathElement>(null);
   const wave3Ref = useRef<SVGPathElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // Animate waves with different speeds and directions
     if (wave1Ref.current && wave2Ref.current && wave3Ref.current) {
       // Wave 1 - Fast
@@ -44,7 +45,7 @@ export default function WaveBackground() {
         ease: "sine.inOut"
       });
     }
-  }, []);
+  });
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -61,7 +62,7 @@ export default function WaveBackground() {
           fill="#0A2463"
           fillOpacity="0.3"
         />
-        
+
         {/* Wave 2 - Medium */}
         <path
           ref={wave2Ref}
@@ -69,7 +70,7 @@ export default function WaveBackground() {
           fill="#5E9EFF"
           fillOpacity="0.2"
         />
-        
+
         {/* Wave 3 - Lightest */}
         <path
           ref={wave3Ref}

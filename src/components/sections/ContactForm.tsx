@@ -84,7 +84,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white p-8 rounded-2xl border-2 border-gray-100 shadow-lg">
+    <div className="bg-white px-5 py-8 sm:p-10 rounded-2xl border-2 border-gray-100 shadow-lg w-full">
       <h2 className="text-2xl font-bold text-wave-navy mb-6">
         Send us a Message
       </h2>
@@ -113,7 +113,7 @@ export default function ContactForm() {
           {...register("phone")}
           label="Phone Number"
           type="tel"
-          placeholder="+91 98765 43210"
+          placeholder="+91 95674 64435"
           error={errors.phone?.message}
         />
 

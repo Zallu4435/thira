@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useRef, ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 interface PageTransitionProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
   const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!containerRef.current) return;
 
     // Animate in on route change

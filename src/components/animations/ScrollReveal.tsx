@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useRef, ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,14 +22,10 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const elementRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!elementRef.current) return;
 
     const element = elementRef.current;
-
-    // Check if element is already in viewport
-    const rect = element.getBoundingClientRect();
-    const isInViewport = rect.top < window.innerHeight * 0.85;
 
     // Set initial position based on direction
     const initialState: any = { opacity: 0 };
@@ -53,35 +50,9 @@ export default function ScrollReveal({
         break;
     }
 
-    // If already in viewport, show immediately with animation
-    if (isInViewport) {
-      gsap.set(element, initialState);
-      gsap.to(element, {
-        ...animateState,
-        duration: duration * 0.5, // Faster animation if already visible
-        delay: delay / 1000,
-        ease: "power3.out",
-      });
-      return;
-    }
-
     gsap.set(element, initialState);
 
-    // Fallback: make visible after 2 seconds if ScrollTrigger doesn't fire
-    const fallbackTimeout = setTimeout(() => {
-      const currentOpacity = gsap.getProperty(element, "opacity");
-      if (currentOpacity === 0 || currentOpacity === null) {
-        gsap.to(element, {
-          opacity: 1,
-          y: 0,
-          x: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        });
-      }
-    }, 2000);
-
-    const animation = gsap.to(element, {
+    gsap.to(element, {
       ...animateState,
       duration,
       delay: delay / 1000,
@@ -90,22 +61,9 @@ export default function ScrollReveal({
         trigger: element,
         start: "top 85%",
         toggleActions: "play none none none",
-        onEnter: () => {
-          clearTimeout(fallbackTimeout);
-        },
       },
     });
-
-    return () => {
-      clearTimeout(fallbackTimeout);
-      animation?.kill?.();
-      ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.vars.trigger === element) {
-          trigger.kill();
-        }
-      });
-    };
-  }, [direction, delay, duration]);
+  }, { scope: elementRef, dependencies: [direction, delay, duration] });
 
   return <div ref={elementRef}>{children}</div>;
 }
