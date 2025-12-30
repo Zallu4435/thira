@@ -4,43 +4,28 @@ import { useState } from "react";
 import { Send } from "lucide-react";
 import { Button, Input, Textarea, Select } from "@/components/common";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/components/ui/ToastProvider";
+import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
 
-const phoneRegex = /^[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{1,9}$/;
-
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Name must be at least 2 characters long")
-    .max(100, "Name is too long"),
-  email: z.string().email("Please provide a valid email address"),
-  phone: z
-    .string()
-    .regex(phoneRegex, "Please provide a valid phone number"),
-  businessType: z.string().min(1, "Please select a business type"),
-  message: z
-    .string()
-    .min(10, "Message must be at least 10 characters long")
-    .max(2000, "Message is too long"),
-});
-
-type FormData = z.infer<typeof formSchema>;
+// Schema moved to @/lib/validations/contact
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const { register, handleSubmit, formState: { errors }, reset, setError } = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+  const { register, handleSubmit, formState: { errors }, reset, setError } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
     mode: "onBlur",
+    defaultValues: {
+      businessType: "",
+    }
   });
 
   const { toast } = useToast();
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setErrorMessage("");
 
@@ -68,7 +53,7 @@ export default function ContactForm() {
         setSubmitStatus("error");
         const msg = result?.error || "Something went wrong";
         if (result?.field) {
-          setError(result.field as keyof FormData, { message: msg });
+          setError(result.field as keyof ContactFormData, { message: msg });
         }
         setErrorMessage(msg);
         toast({ type: "error", title: "Submission failed", description: msg });
@@ -113,7 +98,7 @@ export default function ContactForm() {
           {...register("phone")}
           label="Phone Number"
           type="tel"
-          placeholder="+91 95674 64435"
+          placeholder="+91 91234 56789"
           error={errors.phone?.message}
         />
 

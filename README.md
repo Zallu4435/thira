@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Thira - Building Digital Presence for Local Businesses
 
-## Getting Started
+Thira is a modern, responsive web application built with Next.js 16, designed to help local businesses across Kerala establish a professional digital presence. From salons to restaurants and gyms, Thira provides custom-tailored web solutions.
 
-First, run the development server:
+## 🌊 Ride the Wave of Growth
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Thira focuses on mobile-first design, high performance, and seamless user experiences using state-of-the-art animations.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Responsive Design**: Mobile-first architecture ensures a perfect look on all devices.
+- **GSAP Animations**: Fluid, premium animations for hero sections, scroll reveals, and page transitions.
+- **Modern UI/UX**: Clean aesthetics using Tailwind CSS 4.
+- **Gmail API Integration**: Secure OAuth2-powered email delivery for contact forms.
+- **Contact Forms**: Integrated lead generation with validation (Zod + React Hook Form).
+- **Direct WhatsApp Integration**: Floating contact buttons and quick-action links.
+- **SEO Optimized**: Built-in SEO best practices using dedicated metadata configurations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Email/API**: [Google Gmail API](https://developers.google.com/gmail/api) via OAuth2
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [GSAP](https://greensock.com/gsap/) with `@gsap/react`
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Forms**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
+- **Email**: [Resend](https://resend.com/)
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js 18.x or higher
+- npm or pnpm
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Zallu4435/thira.git
+   cd thira
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Copy `.env.example` to `.env.local` and fill in your keys:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📦 Project Structure
+
+- `src/app`: Page routes and layouts.
+- `src/components`: Reusable UI components.
+  - `animations/`: GSAP-powered motion components.
+  - `common/`: Base building blocks like Buttons, Cards, and Containers.
+  - `layout/`: Global elements like Header and Footer.
+  - `sections/`: High-level page sections (Hero, Services, CTA).
+- `src/lib`: Utilities, constants, and shared types.
+- `public/`: Static assets (images, icons).
+
+## 📄 Scripts
+
+- `npm run dev`: Starts the development server with Turbopack.
+- `npm run build`: Creates an optimized production build.
+- `npm run start`: Starts the production server.
+- `npm run lint`: Runs ESLint for code quality checks.
+- `npm run type-check`: Validates TypeScript types.
+
+## 📧 Contact
+
+**Email**: hello@thira.in  
+**WhatsApp**: +91 95674 64435  
+**Location**: Malappuram, Kerala, India
+
+---
+
+Developed with ❤️ by the Thira Team.

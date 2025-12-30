@@ -6,7 +6,7 @@ export const siteConfig = {
   ogImage: "/og-image.png",
   links: {
     whatsapp: "https://wa.me/919567464435?text=Hi,%20I'm%20interested%20in%20getting%20a%20website%20for%20my%20business",
-    email: "hello@thira.in",
+    email: "nazalzallu123@gmail.com",
     phone: "+91 95674 64435",
   },
   location: "Malappuram, Kerala, India",

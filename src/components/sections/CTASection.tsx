@@ -3,6 +3,7 @@
 import { ArrowRight, Mail } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { ButtonLink } from "@/components/common";
+import { siteConfig } from "@/lib/constants/siteConfig";
 
 export default function CTASection() {
   return (
@@ -36,7 +37,7 @@ export default function CTASection() {
               </ButtonLink>
 
               <ButtonLink
-                href="tel:+919567464435"
+                href={`tel:${siteConfig.links.phone.replace(/\s/g, "")}`}
                 variant="outline"
                 size="lg"
                 className="bg-white border-wave-cyan/20 hover:border-wave-cyan"
