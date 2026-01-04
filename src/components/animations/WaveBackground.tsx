@@ -50,7 +50,7 @@ export default function WaveBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <svg
-        className="absolute bottom-0 left-0 w-full h-full"
+        className="absolute bottom-0 left-0 w-full h-48 sm:h-56 md:h-64 lg:h-80 xl:h-full"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function WaveBackground() {
           ref={wave1Ref}
           d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,128C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           fill="#0A2463"
-          fillOpacity="0.3"
+          className="opacity-25 md:opacity-30 lg:opacity-40"
         />
 
         {/* Wave 2 - Medium */}
@@ -68,7 +68,7 @@ export default function WaveBackground() {
           ref={wave2Ref}
           d="M0,128L48,138.7C96,149,192,171,288,165.3C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           fill="#5E9EFF"
-          fillOpacity="0.2"
+          className="opacity-15 md:opacity-20 lg:opacity-25"
         />
 
         {/* Wave 3 - Lightest */}
@@ -76,7 +76,7 @@ export default function WaveBackground() {
           ref={wave3Ref}
           d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,170.7C672,160,768,160,864,170.7C960,181,1056,203,1152,208C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
           fill="#3BCEAC"
-          fillOpacity="0.15"
+          className="opacity-10 md:opacity-15 lg:opacity-20"
         />
       </svg>
     </div>
